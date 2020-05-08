@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+  My Progress bar...
+</mat-toolbar>
+<div class="basic-container">
+  <mat-progress-spinner mode="determinate" [value]="pbValue"></mat-progress-spinner>
+</div>
+
+<button mat-raised-button (click)="startTimer(20)">Start timer ({{currSec}})</button>
