@@ -1,6 +1,6 @@
 <div class="header-toolbar-spacer"></div>
 <mat-toolbar color="white">
-  <div class="select-duration">Select sprint duration in minutes:</div>
+  <div class="select-duration">Sprint duration in minutes:</div>
   <ng-container *ngFor="let duration of durations">
     <div [ngClass]="(duration.selected)? 'duration-selected': 'duration-unselected'"
          (click)="setDuration(duration)">{{duration.duration}}</div>
@@ -9,6 +9,7 @@
     <fa-icon [icon]="faPlus"></fa-icon>
   </div>
   <div><input (keyup)="setSprintName($event.target.value)"
+              [attr.disabled]="isRunning ? 'true': null"
               class="sprint-name" id="sprint_name" matInput
               placeholder="Sprint name Ex. Maths"
               maxlength="20"
