@@ -1,8 +1,25 @@
-<mat-toolbar color="primary">
-  My Progress bar...
+<div class="header-toolbar-spacer"></div>
+<mat-toolbar color="white">
+  <div class="select-duration">Select sprint duration in minutes:</div>
+  <ng-container *ngFor="let duration of durations">
+    <div [ngClass]="(duration.selected)? 'duration-selected': 'duration-unselected'"
+         (click)="setDuration(duration)">{{duration.duration}}</div>
+  </ng-container>
+  <div class="plus-sign">
+    <fa-icon [icon]="faPlus"></fa-icon>
+  </div>
+  <div><input (keyup)="setSprintName($event.target.value)"
+              class="sprint-name" id="sprint_name" matInput
+              placeholder="Sprint name Ex. Maths"
+              maxlength="20"
+              type="text"/></div>
+  <button mat-raised-button (click)="startOrStopTimer()">{{isRunning ? 'STOP' : 'START'}}</button>
 </mat-toolbar>
-<div class="basic-container">
-  <mat-progress-spinner mode="determinate" [value]="pbValue"></mat-progress-spinner>
+<div class="spinner">
+  <mat-progress-spinner mode="determinate" [diameter]="150" [strokeWidth]="5" [value]="pbValue">
+  </mat-progress-spinner>
+  <div class="spinner-fill">{{formatRemainingDuration()}}</div>
 </div>
-
-<button mat-raised-button (click)="startTimer(20)">Start timer ({{currSec}})</button>
+<div class="sprint-name-div">
+  <span>"{{getSprintName()}}" sprint</span>
+</div>
