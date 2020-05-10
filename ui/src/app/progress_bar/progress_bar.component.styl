@@ -1,3 +1,9 @@
+$plus_icon_color = #673ab7
+$duration_div_hover_color = #421ab7
+$duration_div_unselected_color = #f5f5f5
+$cursor-input = pointer
+$cursor-no-input = crosshair
+
 .select-duration {
   margin-right 5px
 }
@@ -5,25 +11,30 @@
 .plus-sign {
   padding-left 5px
   padding-right 5px
-  color #673ab7
+  color $plus_icon_color
 }
 
-duration(bg-color)
+duration(bg-color, cursor)
   display inline-block
   padding 5px
   border 1px dotted black
-  cursor pointer
+  cursor cursor
   background-color bg-color
 
 .duration-unselected {
-  duration #f5f5f5
+  duration $duration_div_unselected_color $cursor-input
+
+  &:hover {
+    background-color $duration_div_hover_color
+  }
 }
-.duration-unselected:hover{
-  background-color #421ab7
+
+.duration-unselected-running {
+  duration $duration_div_unselected_color $cursor-no-input
 }
 
 .duration-selected {
-  duration #673ab7
+  duration $plus_icon_color $cursor-no-input
 }
 
 .sprint-name {
@@ -33,13 +44,15 @@ duration(bg-color)
   width 200px
   height 30px !important
 }
-.sprint-name-div{
+
+.sprint-name-div {
   font-size 18px
   position absolute
   top 290px
   left 60px
-  margin-right  5px
+  margin-right 5px
 }
+
 .spinner {
   position absolute
   top 130px
@@ -52,6 +65,7 @@ duration(bg-color)
   left 30px
   font-size 35px
 }
-.header-toolbar-spacer{
- margin-top 10px
+
+.header-toolbar-spacer {
+  margin-top 10px
 }

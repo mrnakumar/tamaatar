@@ -2,8 +2,9 @@
 <mat-toolbar color="white">
   <div class="select-duration">Sprint duration in minutes:</div>
   <ng-container *ngFor="let duration of durations">
-    <div [ngClass]="(duration.selected)? 'duration-selected': 'duration-unselected'"
-         (click)="setDuration(duration)">{{duration.duration}}</div>
+    <div
+      [ngClass]="(duration.selected)? 'duration-selected': ((isRunning)? 'duration-unselected-running':'duration-unselected')"
+      (click)="setDuration(duration)">{{duration.duration}}</div>
   </ng-container>
   <div class="plus-sign">
     <fa-icon [icon]="faPlus"></fa-icon>
