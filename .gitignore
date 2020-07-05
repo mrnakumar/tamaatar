@@ -1,2 +1,5 @@
 ui/dist
 .idea
+main
+*.db
+frontEnd
