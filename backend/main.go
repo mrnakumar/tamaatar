@@ -9,6 +9,7 @@ import (
 	"mrnakumar.com/tamaatar/handlers/authentication"
 	"mrnakumar.com/tamaatar/models/tokens"
 	"mrnakumar.com/tamaatar/storage"
+	"net/http"
 )
 
 func main() {
@@ -32,7 +33,9 @@ func main() {
 	e.PUT("/signup", authentication.CreateSignUpHandler(userStorage).SignUp)
 	e.POST("/login", auth.Login)
 	e.POST("/refresh", auth.Refresh)
-	//e.GET("/clogin", auth.CheckLogin)
+	e.GET("/clogin", func(context echo.Context) error {
+		return context.NoContent(http.StatusOK)
+	}, auth.CheckLogin)
 	e.GET("/logout", auth.Logout)
 	e.POST("/createSprint", sprintHandler.CreateSprint, auth.CheckLogin)
 	e.POST("/createPromise", promiseHandler.CreatePromise, auth.CheckLogin)

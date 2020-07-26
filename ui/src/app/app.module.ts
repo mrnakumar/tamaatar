@@ -8,14 +8,15 @@ import {ProgressBarComponent} from './progress_bar/progress_bar.componenet';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {MatInputModule} from '@angular/material/input';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,8 @@ import {MatInputModule} from '@angular/material/input';
     MatButtonModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
