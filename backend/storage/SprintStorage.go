@@ -11,6 +11,7 @@ const sprintDb = "sprints.db"
 type SprintStorage interface {
 	Create(sprint models.Sprint) error
 	Find(uid string, name string, day int, month string, year int) (models.Sprint, bool)
+	List(uid string, day int, month string, year int) []models.Sprint
 }
 
 type sprintStorageImpl struct {
@@ -77,4 +78,14 @@ func (ss sprintStorageImpl) saveAll() error {
 		return err
 	}
 	return ioutil.WriteFile(sprintDb, bytes, 0644)
+}
+
+func (ss sprintStorageImpl) List(uid string, day int, month string, year int) []models.Sprint {
+	var sprints []models.Sprint
+	for _, s := range ss.sprints {
+		if s.UserId == uid && s.Day == day && s.Month == month && s.Year == year {
+			sprints = append(sprints, s)
+		}
+	}
+	return sprints
 }

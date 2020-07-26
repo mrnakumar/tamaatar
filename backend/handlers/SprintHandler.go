@@ -5,7 +5,9 @@ import (
 	"github.com/labstack/echo/v4"
 	"mrnakumar.com/tamaatar/models"
 	"mrnakumar.com/tamaatar/models/request"
+	"mrnakumar.com/tamaatar/models/response"
 	"mrnakumar.com/tamaatar/storage"
+	"mrnakumar.com/tamaatar/utils"
 	"net/http"
 	"sync"
 	"time"
@@ -13,6 +15,7 @@ import (
 
 type SprintHandler interface {
 	CreateSprint(c echo.Context) error
+	TimeBySprintName(c echo.Context) error
 }
 
 type sprintHandlerImpl struct {
@@ -49,4 +52,30 @@ func (sh sprintHandlerImpl) CreateSprint(c echo.Context) error {
 		return c.NoContent(http.StatusInternalServerError)
 	}
 	return c.NoContent(http.StatusCreated)
+}
+
+func (sh sprintHandlerImpl) TimeBySprintName(c echo.Context) error {
+	userId, found := utils.RequestUtils{}.GetUserNameHeader(c)
+	if !found {
+		return c.NoContent(http.StatusBadRequest)
+	}
+	date := time.Now().UTC()
+	sh.lock.Lock()
+	sprints := sh.sprintDb.List(userId, date.Day(), date.Month().String(), date.Year())
+	sh.lock.Unlock()
+	timeByName := make(map[string]int)
+	for _, s := range sprints {
+		if _, ok := timeByName[s.Name]; !ok {
+			timeByName[s.Name] = 0
+		}
+		timeByName[s.Name] += s.Duration
+	}
+	var result []response.TimeBySprintNameResponse
+	for k, v := range timeByName {
+		result = append(result, response.TimeBySprintNameResponse{
+			Name:     k,
+			Duration: v,
+		})
+	}
+	return c.JSON(http.StatusOK, result)
 }

@@ -39,6 +39,7 @@ func main() {
 	e.GET("/logout", auth.Logout)
 	e.POST("/createSprint", sprintHandler.CreateSprint, auth.CheckLogin)
 	e.POST("/createPromise", promiseHandler.CreatePromise, auth.CheckLogin)
+	e.GET("/timeBySprintName", sprintHandler.TimeBySprintName, auth.CheckLogin)
 	e.Logger.Fatal(e.Start(":8080"))
 }
 

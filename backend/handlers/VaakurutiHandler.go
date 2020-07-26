@@ -33,7 +33,7 @@ func (sh vaakurutiHandlerImpl) CreatePromise(c echo.Context) error {
 		return err
 	}
 	date := time.Now().UTC()
-	userId, found := utils.RequestUtils{}.GetHeader(c)
+	userId, found := utils.RequestUtils{}.GetUserNameHeader(c)
 	if !found {
 		return c.NoContent(http.StatusBadRequest)
 	}
