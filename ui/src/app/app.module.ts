@@ -12,11 +12,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {MatInputModule} from '@angular/material/input';
 import {HttpClientModule} from '@angular/common/http';
+import {CompletedWorkComponent} from './completed_work/CompletedWorkComponent';
+import {ApiService} from './http/ApiService';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProgressBarComponent,
+    CompletedWorkComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import {HttpClientModule} from '@angular/common/http';
     MatInputModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
