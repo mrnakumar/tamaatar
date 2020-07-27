@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../http/ApiService';
-import {TimeBySprintName} from '../model/TimeBySprintName';
+import {TimeBySprintName} from '../poto/TimeBySprintName';
 import {RefreshWorkDone} from '../notification/RefreshWorkDone';
 import {EventTypes} from '../constants/EventTypes';
 
