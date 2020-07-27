@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {interval, Subscription} from 'rxjs';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {ApiService} from '../http/ApiService';
