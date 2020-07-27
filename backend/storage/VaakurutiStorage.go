@@ -10,6 +10,7 @@ const promiseDb = "promise.db"
 
 type VaakurutiStorage interface {
 	Create(sprint models.Vaakuruti) error
+	GetAll(userId string, day int, month string, year int) []models.Vaakuruti
 }
 
 type vaakurutiStorageImpl struct {
@@ -65,4 +66,14 @@ func (ss vaakurutiStorageImpl) saveAll() error {
 		return err
 	}
 	return ioutil.WriteFile(promiseDb, bytes, 0644)
+}
+
+func (ss vaakurutiStorageImpl) GetAll(userId string, day int, month string, year int) []models.Vaakuruti {
+	var result []models.Vaakuruti
+	for _, v := range ss.promises {
+		if v.UserId == userId && v.Day == day && v.Month == month && v.Year == year {
+			result = append(result, v)
+		}
+	}
+	return result
 }
