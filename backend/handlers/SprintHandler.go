@@ -9,6 +9,8 @@ import (
 	"mrnakumar.com/tamaatar/storage"
 	"mrnakumar.com/tamaatar/utils"
 	"net/http"
+	"sort"
+	"strings"
 	"sync"
 	"time"
 )
@@ -80,5 +82,8 @@ func (sh sprintHandlerImpl) TimeBySprintName(c echo.Context) error {
 			Duration: v,
 		})
 	}
+	sort.Slice(result, func(i, j int) bool {
+		return strings.Compare(result[i].Name, result[j].Name) <= 0
+	})
 	return c.JSON(http.StatusOK, result)
 }
