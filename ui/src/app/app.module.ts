@@ -14,14 +14,16 @@ import {MatInputModule} from '@angular/material/input';
 import {HttpClientModule} from '@angular/common/http';
 import {CompletedWorkComponent} from './completed_work/CompletedWorkComponent';
 import {ApiService} from './http/ApiService';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RefreshWorkDone} from './notification/RefreshWorkDone';
+import {PromisePopupComponent} from './promise_popup/promise_popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProgressBarComponent,
     CompletedWorkComponent,
+    PromisePopupComponent,
   ],
   imports: [
     BrowserModule,
