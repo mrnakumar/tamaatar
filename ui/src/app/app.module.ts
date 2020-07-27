@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {CompletedWorkComponent} from './completed_work/CompletedWorkComponent';
 import {ApiService} from './http/ApiService';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {RefreshWorkDone} from './notification/RefreshWorkDone';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     NgbModule,
   ],
-  providers: [ApiService],
+  providers: [ApiService, RefreshWorkDone],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -44,4 +44,21 @@ export class ApiService {
       }
     });
   }
+
+  public createSprint(name: string, duration: number, onSuccess: () => void): void {
+    this.http.post('/createSprint', {
+      Name: name,
+      Duration: duration
+    }).subscribe(_ => {
+      onSuccess();
+    }, error => {
+      if (error.status === 401) {
+        this.logIn(success => {
+          if (success) {
+            this.createSprint(name, duration, onSuccess);
+          }
+        });
+      }
+    });
+  }
 }

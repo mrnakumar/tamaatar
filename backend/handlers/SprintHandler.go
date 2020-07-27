@@ -44,6 +44,9 @@ func (sh sprintHandlerImpl) CreateSprint(c echo.Context) error {
 		Month:    date.Month().String(),
 		Year:     date.Year(),
 	}
+	if createReq.Duration == 0 {
+		return c.NoContent(http.StatusOK)
+	}
 	sh.lock.Lock()
 	err = sh.sprintDb.Create(sprint)
 	sh.lock.Unlock()

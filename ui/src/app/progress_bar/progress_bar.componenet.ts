@@ -1,6 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {interval, Subscription} from 'rxjs';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
+import {ApiService} from '../http/ApiService';
+import {RefreshWorkDone} from '../notification/RefreshWorkDone';
+import {EventTypes} from '../constants/EventTypes';
 
 @Component({
   selector: 'app-progress-bar',
@@ -32,6 +35,9 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     {duration: 34, selected: false},
     {duration: 37, selected: false}
   ];
+
+  constructor(private api: ApiService, private notifier: RefreshWorkDone) {
+  }
 
   ngOnInit(): void {
     if (this.durationDiv === null) {
@@ -72,6 +78,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
   }
 
   private mayBeStopTimer() {
+    this.recordSprint();
     if (this.subscription !== null) {
       this.subscription.unsubscribe();
       this.subscription = null;
@@ -125,6 +132,17 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     if (this.alarm !== null) {
       this.alarm.unsubscribe();
       this.alarm = null;
+    }
+  }
+
+  private recordSprint() {
+    const inMinutes = this.durationInSeconds / 60;
+    const remaining = this.remainingDurationInSeconds / 60;
+    const timeSpent = inMinutes - remaining;
+    if (timeSpent > 0) {
+      this.api.createSprint(this.sprintName, timeSpent, () => {
+        this.notifier.newEvent(EventTypes.REFRESH_WORK_DONE);
+      });
     }
   }
 }
