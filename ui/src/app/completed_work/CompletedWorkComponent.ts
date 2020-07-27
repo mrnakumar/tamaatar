@@ -5,6 +5,7 @@ import {TimeBySprintName} from '../model/TimeBySprintName';
 @Component({
   selector: 'app-completed-work',
   templateUrl: 'completed-work.component.html',
+  styleUrls: ['./completed-work.component.styl'],
 })
 export class CompletedWorkComponent implements OnInit {
   completed: TimeBySprintName[];

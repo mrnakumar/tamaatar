@@ -14,6 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import {HttpClientModule} from '@angular/common/http';
 import {CompletedWorkComponent} from './completed_work/CompletedWorkComponent';
 import {ApiService} from './http/ApiService';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {ApiService} from './http/ApiService';
     FontAwesomeModule,
     MatInputModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

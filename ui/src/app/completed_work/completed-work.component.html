@@ -1,1 +1,25 @@
-{{completed ? 'yes' : 'no'}}
+<div class="time-by-sprint-name">
+  <ng-container *ngIf="!completed">
+  </ng-container>
+  <ng-container *ngIf="completed && completed.length > 0">
+    <div class="row">
+      <span></span>
+      <div class="col-md-7">Work</div>
+      <div class="col-md-4">Time Spent</div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 header-body-separator"></div>
+    </div>
+    <ng-container *ngFor="let work of completed">
+      <div class="row">
+        <span class="work-item-left-side"></span>
+        <div class="col-md-7">
+          {{work.Name}}
+        </div>
+        <div class="col-md-4">
+          {{work.Duration}}
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

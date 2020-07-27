@@ -33,8 +33,15 @@ export class ApiService {
     this.http.get<TimeBySprintName[]>('timeBySprintName').subscribe(next => {
       sprintConsumer(next);
     }, error => {
-      console.log(error);
-      sprintConsumer([]);
+      if (error.status === 401) {
+        this.logIn(success => {
+          if (success) {
+            this.listSprints(sprintConsumer);
+          } else {
+            sprintConsumer([]);
+          }
+        });
+      }
     });
   }
 }

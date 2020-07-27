@@ -1,4 +1,4 @@
 export interface TimeBySprintName {
-  name: string;
-  duration: number;
+  Name: string;
+  Duration: number;
 }
