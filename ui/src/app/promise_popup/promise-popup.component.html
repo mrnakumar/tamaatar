@@ -1,0 +1,18 @@
+<div class="popup-background">
+  <div class="popup-body">
+    <div class="row header">Make some promise</div>
+    <ng-container *ngFor="let promise of promises">
+      <div class="row">
+        <div class="col-md7">
+          <input type="text" value="{{promise.name}}"/>
+        </div>
+        <div class="col-md4">
+          <input type="text" value="{{promise.duration}}"/>
+        </div>
+        <span class="plus-promise-btn">
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </span>
+      </div>
+    </ng-container>
+  </div>
+</div>
