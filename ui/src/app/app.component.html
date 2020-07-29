@@ -3,11 +3,12 @@
   <title> Stay focused. Track consistency.</title>
 </head>
 <body>
-  <div class="main_header">Do a focused sprint!</div>
-  <div class="sub_header">We recommend giving every sprint a name to analyze your consistency.</div>
-  <span class="make-promise-button"><button>Make promise for today</button></span>
-  <app-progress-bar></app-progress-bar>
-  <app-completed-work></app-completed-work>
+<div class="main_header">Do a focused sprint!</div>
+<div class="sub_header">We recommend giving every sprint a name to analyze your consistency.</div>
+<span class="make-promise-button"><button (click)="makePromiseNotify()">Make promise for today</button></span>
+<app-progress-bar></app-progress-bar>
+<app-completed-work></app-completed-work>
+<app-promise-popup></app-promise-popup>
 </body>
 </html>
 
