@@ -25,6 +25,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
 
   durations: DurationDiv[] = [
     {duration: 1, selected: true},
+    {duration: 5, selected: false},
     {duration: 13, selected: false},
     {duration: 16, selected: false},
     {duration: 19, selected: false},
