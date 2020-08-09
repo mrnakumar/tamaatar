@@ -141,7 +141,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     const remaining = this.remainingDurationInSeconds / 60;
     const timeSpent = inMinutes - remaining;
     if (timeSpent > 0) {
-      this.api.createSprint(this.sprintName, timeSpent, () => {
+      this.api.createSprint(this.sprintName, Math.trunc(Math.round(timeSpent)), () => {
         this.notifier.newEvent(EventTypes.REFRESH_WORK_DONE);
       });
     }
