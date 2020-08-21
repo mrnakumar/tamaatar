@@ -15,7 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {CompletedWorkComponent} from './completed_work/CompletedWorkComponent';
 import {ApiService} from './http/ApiService';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {RefreshWorkDone} from './notification/RefreshWorkDone';
+import {EventBus} from './notification/EventBus';
 import {PromisePopupComponent} from './promise_popup/promise_popup.component';
 
 @NgModule({
@@ -38,7 +38,7 @@ import {PromisePopupComponent} from './promise_popup/promise_popup.component';
     HttpClientModule,
     NgbModule,
   ],
-  providers: [ApiService, RefreshWorkDone],
+  providers: [ApiService, EventBus],
   bootstrap: [AppComponent]
 })
 export class AppModule {

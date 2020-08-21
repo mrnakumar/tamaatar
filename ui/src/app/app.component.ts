@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {RefreshWorkDone} from './notification/RefreshWorkDone';
+import {EventBus} from './notification/EventBus';
 import {EventTypes} from './constants/EventTypes';
 
 @Component({
@@ -8,7 +8,7 @@ import {EventTypes} from './constants/EventTypes';
   styleUrls: ['./app.component.styl']
 })
 export class AppComponent {
-  constructor(private notifier: RefreshWorkDone) {
+  constructor(private notifier: EventBus) {
   }
 
   title = 'ui';

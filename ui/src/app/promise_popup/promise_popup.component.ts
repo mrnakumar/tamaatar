@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PromisePoTo} from '../poto/PromisePoTo';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
-import {RefreshWorkDone} from '../notification/RefreshWorkDone';
+import {EventBus} from '../notification/EventBus';
 import {EventTypes} from '../constants/EventTypes';
 
 @Component({
@@ -14,7 +14,7 @@ export class PromisePopupComponent implements OnInit {
   promises: PromisePoTo[] = [new PromisePoTo('', 0)];
   show = false;
 
-  constructor(private notifier: RefreshWorkDone) {
+  constructor(private notifier: EventBus) {
   }
 
   ngOnInit(): void {

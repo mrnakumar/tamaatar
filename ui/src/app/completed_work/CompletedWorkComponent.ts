@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../http/ApiService';
 import {TimeBySprintName} from '../poto/TimeBySprintName';
-import {RefreshWorkDone} from '../notification/RefreshWorkDone';
+import {EventBus} from '../notification/EventBus';
 import {EventTypes} from '../constants/EventTypes';
 
 @Component({
@@ -12,7 +12,7 @@ import {EventTypes} from '../constants/EventTypes';
 export class CompletedWorkComponent implements OnInit {
   completed: TimeBySprintName[];
 
-  constructor(private api: ApiService, private refreshWorkDone: RefreshWorkDone) {
+  constructor(private api: ApiService, private refreshWorkDone: EventBus) {
   }
 
   ngOnInit(): void {

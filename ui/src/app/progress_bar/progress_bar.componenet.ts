@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {interval, Subscription} from 'rxjs';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {ApiService} from '../http/ApiService';
-import {RefreshWorkDone} from '../notification/RefreshWorkDone';
+import {EventBus} from '../notification/EventBus';
 import {EventTypes} from '../constants/EventTypes';
 
 @Component({
@@ -37,7 +37,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     {duration: 37, selected: false}
   ];
 
-  constructor(private api: ApiService, private notifier: RefreshWorkDone) {
+  constructor(private api: ApiService, private notifier: EventBus) {
   }
 
   ngOnInit(): void {
