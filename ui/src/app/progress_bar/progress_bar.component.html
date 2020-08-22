@@ -9,12 +9,20 @@
   <div class="plus-sign">
     <fa-icon [icon]="faPlus"></fa-icon>
   </div>
-  <div><input (keyup)="setSprintName($event.target.value)"
+  <div><input id="sprintName"
+              (keyup)="setSprintName($event.target.value)"
               [attr.disabled]="isRunning ? 'true': null"
               class="sprint-name" id="sprint_name" matInput
               placeholder="Sprint name Ex. Maths"
               maxlength="20"
-              type="text"/></div>
+              type="text"
+              [matAutocomplete]="auto"/>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="setSprintName($event.option.value)">
+      <mat-option *ngFor="let tag of localTags" [value]="tag">
+        {{ tag }}
+      </mat-option>
+    </mat-autocomplete>
+  </div>
   <button mat-raised-button (click)="startOrStopTimer()">{{isRunning ? 'STOP' : 'START'}}</button>
 </mat-toolbar>
 <div class="spinner">

@@ -4,6 +4,7 @@ import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {ApiService} from '../http/ApiService';
 import {EventBus} from '../notification/EventBus';
 import {EventTypes} from '../constants/EventTypes';
+import {LocalTagsService} from '../local_tag/LocalTagsService';
 
 @Component({
   selector: 'app-progress-bar',
@@ -22,7 +23,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
   alarm: Subscription = null;
   durationDiv: DurationDiv = null;
   context = new window.AudioContext();
-
+  localTags = [];
   durations: DurationDiv[] = [
     {duration: 1, selected: true},
     {duration: 5, selected: false},
@@ -37,7 +38,9 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     {duration: 37, selected: false}
   ];
 
-  constructor(private api: ApiService, private notifier: EventBus) {
+  constructor(private api: ApiService,
+              private notifier: EventBus,
+              private localTagService: LocalTagsService) {
   }
 
   ngOnInit(): void {
@@ -46,6 +49,7 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
     }
     this.setDuration(this.durationDiv);
     this.pbValue = 100;
+    this.localTags = this.localTagService.updateOrGet(undefined);
   }
 
   ngOnDestroy(): void {
@@ -64,6 +68,9 @@ export class ProgressBarComponent implements OnInit, OnDestroy {
   }
 
   private mayBeStartTimer() {
+    if (this.sprintName && this.sprintName !== 'Anonymous') {
+      this.localTags = this.localTagService.updateOrGet(this.sprintName);
+    }
     this.currSec = this.durationInSeconds;
     this.isRunning = true;
     this.subscription = interval(1000).subscribe((sec) => {

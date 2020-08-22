@@ -17,6 +17,8 @@ import {ApiService} from './http/ApiService';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {EventBus} from './notification/EventBus';
 import {PromisePopupComponent} from './promise_popup/promise_popup.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {LocalTagsService} from './local_tag/LocalTagsService';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,9 @@ import {PromisePopupComponent} from './promise_popup/promise_popup.component';
     MatInputModule,
     HttpClientModule,
     NgbModule,
+    MatAutocompleteModule,
   ],
-  providers: [ApiService, EventBus],
+  providers: [ApiService, EventBus, LocalTagsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
