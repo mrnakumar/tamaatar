@@ -7,7 +7,7 @@ export class LocalTagsService {
   updateOrGet(newTag: string) {
     const tagSet = new Set<string>();
     const tags = localStorage.getItem(this.localTagsKey);
-    if (tags.trim().length > 0) {
+    if (tags && tags.trim().length > 0) {
       const tagsJson = JSON.parse(tags);
       for (const tag of tagsJson) {
         tagSet.add(tag);
